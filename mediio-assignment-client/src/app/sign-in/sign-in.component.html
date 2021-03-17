@@ -1,0 +1,52 @@
+<div class="jumbotron jumbotron-fluid align-items-center d-flex justify-content-center" id="top-cover-image" style="height:100vh; margin:0px">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-11 col-md-8 col-lg-8 d-flex justify-content-center">
+
+            <form [formGroup]="formData">
+                <div class="svg-container">
+                    <svg class="svg-logo" width="300" height="150" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M163 50.0465C163 46.7071 165.686 44 169 44C172.314 44 175 46.7071 175 50.0465V74H188.631C191.044 74 193 76.6863 193 80C193 83.3137 191.044 86 188.631 86H177.631H175H163V80V50.0465ZM163 98V132.954C163 136.293 165.686 139 169 139C172.314 139 175 136.293 175 132.954V98H163ZM53 100.5C53 121.763 70.237 139 91.5 139C101.768 139 111.097 134.98 118 128.429V132.919C118 136.277 120.686 139 124 139C127.314 139 130 136.277 130 132.919V100.5V100.081C130 99.9876 129.998 99.8947 129.994 99.8022C129.622 78.8612 112.53 62 91.5 62C70.237 62 53 79.237 53 100.5ZM118 100.5C118 85.8645 106.136 74 91.5 74C76.8645 74 65 85.8645 65 100.5C65 115.136 76.8645 127 91.5 127C106.136 127 118 115.136 118 100.5ZM221.066 138C224.417 138 227.133 135.324 227.133 132.023V93.7564C227.667 80.0237 234.532 73.9541 249.934 73.9541C253.284 73.9541 256 71.2781 256 67.977C256 64.676 253.284 62 249.934 62C228.133 62 215.749 73.0121 215 93.6456V132.023C215 135.324 217.716 138 221.066 138ZM308.5 139C287.237 139 270 121.763 270 100.5C270 79.237 287.237 62 308.5 62C329.763 62 347 79.237 347 100.5C347 121.763 329.763 139 308.5 139ZM335 100.5C335 115.136 323.136 127 308.5 127C293.864 127 282 115.136 282 100.5C282 85.8645 293.864 74 308.5 74C323.136 74 335 85.8645 335 100.5Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="textFieldInput form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Your email"  formControlName="email" (change)="onEmailChange($event)" required />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="textFieldInput form-control" id="inputPassword1" placeholder="Your password"  formControlName="password" />
+                </div>
+                <button type="button" class="btn btn-primary submitButton" (click)="authenticateUser(formData.value)"  
+                data-toggle="modal" data-target="#userDetailsModal" [disabled]="isSignInDisabled">SIGN IN</button>
+            </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="userDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title modal-header-text" id="exampleModalLongTitle">User Information</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <p *ngIf="isLoginSuccess" class="modal-body-text">User Name: {{currentUser?.username}}</p>
+            <p *ngIf="isLoginSuccess" class="modal-body-text">Token: {{currentUser?.token}}</p>
+            <p *ngIf="!isLoginSuccess" class="modal-body-text">
+                Email or Password you entered is incorrect
+                Please try again.
+            </p>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" class="btn btn-primary modal-accept-button">ACCEPT</button>
+        </div>
+        </div>
+    </div>
+</div>
